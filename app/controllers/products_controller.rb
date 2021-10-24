@@ -56,6 +56,12 @@ class ProductsController < ApplicationController
     end
   end
 
+  def add_to_basket
+    product = Product.find(params['id'])
+    Basket.create(product: product)
+    redirect_back(fallback_location: products_path, notice: 'Added')
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

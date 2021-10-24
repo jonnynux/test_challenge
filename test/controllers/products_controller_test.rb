@@ -48,4 +48,15 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to products_url
   end
+
+  test "should add to basket" do
+    get products_url
+    3.times do
+      assert_difference('Basket.count') do
+        get add_to_basket_product_path(@product)
+      end
+
+      assert_redirected_to products_url
+    end
+  end
 end

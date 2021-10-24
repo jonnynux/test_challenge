@@ -56,6 +56,11 @@ class BasketsController < ApplicationController
     end
   end
 
+  def checkout
+    Basket.destroy_all
+    redirect_back(fallback_location: baskets_path, notice: 'Checked Out')
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_basket
