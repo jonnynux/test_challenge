@@ -45,4 +45,13 @@ class BasketsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to baskets_url
   end
+
+  test "should checkout basket" do
+    get baskets_url
+    assert_difference('Basket.count', -1) do
+      get checkout_baskets_url(@basket)
+    end
+
+    assert_redirected_to baskets_url
+  end
 end
